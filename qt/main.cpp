@@ -10,7 +10,7 @@ int main(int argc, char* argv[])
 	Widget w;
 	w.show();
 
-#ifdef Q_OS_IOS
+#ifdef EMBEDDED_QT_APP
 	showQtWindow();
 #endif
 

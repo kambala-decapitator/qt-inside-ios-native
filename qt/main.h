@@ -3,7 +3,7 @@
 
 #include <QtGlobal>
 
-#ifdef Q_OS_IOS
+#ifdef EMBEDDED_QT_APP
 void showQtWindow();
 
 #define main qt_app_main

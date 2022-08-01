@@ -5,6 +5,10 @@ project(qt-inside-ios-native
 	LANGUAGES CXX OBJC OBJCXX
 )
 
+if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+	option(EMBEDDED_QT_APP "Embed Qt app inside iOS native app" ON)
+endif()
+
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
