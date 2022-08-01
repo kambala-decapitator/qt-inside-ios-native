@@ -1,5 +1,7 @@
 #import "ViewController.h"
 
+#include "main.h"
+
 @implementation ViewController
 
 - (void)loadView {
@@ -19,6 +21,9 @@
 }
 
 - (void)showQtApp {
+	auto executablePath = NSBundle.mainBundle.executablePath;
+	char* argv[] = {const_cast<char*>(executablePath.fileSystemRepresentation)};
+	qt_app_main(1, argv);
 }
 
 @end

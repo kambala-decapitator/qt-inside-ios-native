@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.5)
+cmake_minimum_required(VERSION 3.19)
 
 project(qt-inside-ios-native
 	VERSION 1.0
@@ -13,9 +13,8 @@ set(CMAKE_XCODE_ATTRIBUTE_DEBUG_INFORMATION_FORMAT[variant=Debug] dwarf)
 set(CMAKE_XCODE_ATTRIBUTE_PRODUCT_BUNDLE_IDENTIFIER "com.kambala.$(PRODUCT_NAME)")
 set(CMAKE_XCODE_ATTRIBUTE_MARKETING_VERSION ${PROJECT_VERSION})
 
+add_subdirectory(qt)
 if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
 	set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone + iPad
 	add_subdirectory(ios)
-else()
-	add_subdirectory(qt)
 endif()

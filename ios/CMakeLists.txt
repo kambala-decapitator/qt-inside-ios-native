@@ -4,6 +4,7 @@ add_executable(ios-app
 	ViewController.mm
 )
 target_link_libraries(ios-app PRIVATE
+	QtApp
 	"-framework UIKit"
 )
 set_target_properties(ios-app PROPERTIES
