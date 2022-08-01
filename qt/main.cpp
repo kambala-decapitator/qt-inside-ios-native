@@ -10,5 +10,9 @@ int main(int argc, char* argv[])
 	Widget w;
 	w.show();
 
+#ifdef Q_OS_IOS
+	showQtWindow();
+#endif
+
 	return a.exec();
 }
