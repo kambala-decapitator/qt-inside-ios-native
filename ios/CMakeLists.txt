@@ -9,6 +9,11 @@ if(EMBEDDED_QT_APP)
 		QtApp
 		"-framework UIKit"
 	)
+	if(QT_VERSION_MAJOR GREATER_EQUAL 6)
+		set_target_properties(${APP_TARGET} PROPERTIES
+			XCODE_ATTRIBUTE_CUSTOM_LINKER_SETTINGS "-Wl,-e,_main"
+		)
+	endif()
 else()
 	set(APP_TARGET QtApp)
 endif()
