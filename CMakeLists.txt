@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.5)
 
 project(qt-inside-ios-native
 	VERSION 1.0
-	LANGUAGES CXX OBJC
+	LANGUAGES CXX OBJC OBJCXX
 )
 
 set(CMAKE_CXX_STANDARD 17)

@@ -1,7 +1,7 @@
 add_executable(ios-app
 	main.m
 	ViewController.h
-	ViewController.m
+	ViewController.mm
 )
 target_link_libraries(ios-app PRIVATE
 	"-framework UIKit"
