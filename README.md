@@ -1,2 +1,50 @@
 # qt-inside-ios-native
-Demonstration of embedding Qt GUI app inside native iOS app
+
+Demonstration of embedding Qt GUI (widgets in this example) app inside native iOS app.
+
+## Main caveat
+
+Embedding Qt app is pretty straightforward: simply call the Qt's "`main`" function that is a default entrypoint for standard Qt apps.
+
+But there's one issue: nothing new appears on the screen. The trick is to find the created Qt window, obtain native `UIView` handle, add it to the native `UIWindow` created by Qt and make the native window "key and visible". See acc313184fbd0641e31b6b6cb310ce691c200714. (probably you can also add the native view directly to your own window)
+
+To "kill" Qt app, call `qApp->quit()`.
+
+## Configure options
+
+iOS has `EMBEDDED_QT_APP` boolean option (on by default) which controls if Qt app is embedded inside the native app or Qt app is launched directly.
+
+## Building
+
+CMake configuration examples for iOS, codesigning parameters are omitted. Building and launching on device (or simulator) is done from Xcode.
+
+You can also build directly from Qt Creator for desktop platforms.
+
+### Qt 5
+
+```bash
+# set the variable to your Qt 5 installation
+QTDIR=~/dev/Qt-libs/5.15.5/ios10-widgets
+
+mkdir build
+cd build
+
+cmake .. -G Xcode \
+  -DCMAKE_PREFIX_PATH="$QTDIR" \
+  --toolchain ../ios/ios-cmake/ios.toolchain.cmake \
+  -DPLATFORM=OS64
+open qt-inside-ios-native.xcodeproj
+```
+
+### Qt 6
+
+```bash
+# set the variable to your Qt 6 installation
+QTDIR=~/dev/Qt-libs/6.3.1/ios12-widgets
+
+mkdir build
+cd build
+
+"$QTDIR/bin/qt-cmake" ..
+open qt-inside-ios-native.xcodeproj
+```
