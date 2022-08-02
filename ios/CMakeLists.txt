@@ -11,7 +11,7 @@ if(EMBEDDED_QT_APP)
 	)
 	if(QT_VERSION_MAJOR GREATER_EQUAL 6)
 		set_target_properties(${APP_TARGET} PROPERTIES
-			XCODE_ATTRIBUTE_CUSTOM_LINKER_SETTINGS "-Wl,-e,_main"
+			qt_no_entrypoint ON
 		)
 	endif()
 else()
