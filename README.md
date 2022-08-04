@@ -10,6 +10,32 @@ But there's one issue: nothing new appears on the screen. The trick is to find t
 
 To "kill" Qt app, call `qApp->quit()`.
 
+### Running Qt app on launch from custom AppDelegate
+
+If you simply need custom app delegate without any native UI, you still have to create `UIWindow` and then run Qt's "`main`" function as soon as app becomes active, for example:
+
+```objc
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary<UIApplicationLaunchOptionsKey, id> *)launchOptions {
+	self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+	self.window.rootViewController = [UIViewController new];
+	[self.window makeKeyAndVisible];
+	return YES;
+}
+
+- (void)applicationDidBecomeActive:(UIApplication *)application {
+	static dispatch_once_t onceToken;
+	dispatch_once(&onceToken, ^{
+		auto executablePath = NSBundle.mainBundle.executablePath;
+		char* argv[] = {const_cast<char*>(executablePath.fileSystemRepresentation)};
+		qt_app_main(1, argv);
+	});
+}
+
+@end
+```
+
 ## Configure options
 
 iOS has `EMBEDDED_QT_APP` boolean option (on by default) which controls if Qt app is embedded inside the native app or Qt app is launched directly.
