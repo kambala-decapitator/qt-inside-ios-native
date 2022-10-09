@@ -5,7 +5,7 @@ project(qt-inside-ios-native
 	LANGUAGES CXX OBJC OBJCXX
 )
 
-if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+if(IOS)
 	option(EMBEDDED_QT_APP "Embed Qt app inside iOS native app" ON)
 endif()
 
@@ -25,7 +25,7 @@ find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
 find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets)
 
 add_subdirectory(qt)
-if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+if(IOS)
 	set(CMAKE_XCODE_ATTRIBUTE_TARGETED_DEVICE_FAMILY "1,2") # iPhone + iPad
 	add_subdirectory(ios)
 endif()

@@ -31,7 +31,7 @@ else()
 		)
 	endif()
 
-	if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+	if(IOS)
 		if(QT_VERSION_MAJOR EQUAL 5)
 			set(CMAKE_EXE_LINKER_FLAGS "-Wl,-e,_qt_main_wrapper")
 		endif()
