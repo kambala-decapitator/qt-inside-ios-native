@@ -1,6 +1,12 @@
 #include "main.h"
 #include "widget.h"
 
+#ifdef Q_OS_MACOS
+#include "QCocoaIntegrationPlugin.h"
+#else
+#include "QIOSIntegrationPlugin.h"
+#endif
+
 #include <QApplication>
 
 int main(int argc, char* argv[])

@@ -53,11 +53,11 @@ if(IOS)
 else()
 	set(qtPlatformPlugin QCocoaIntegrationPlugin)
 endif()
-set(qtPlatformPluginFile ${CMAKE_BINARY_DIR}/${qtPlatformPlugin}.cpp)
+set(qtPlatformPluginFile ${CMAKE_BINARY_DIR}/${qtPlatformPlugin}.h)
 file(WRITE ${qtPlatformPluginFile}
 	"#include <QtPlugin>\nQ_IMPORT_PLUGIN(${qtPlatformPlugin})"
 )
-target_sources(QtApp PRIVATE ${qtPlatformPluginFile})
+target_include_directories(QtApp PUBLIC ${CMAKE_BINARY_DIR})
 target_link_libraries(QtApp PUBLIC
 	Qt${QT_VERSION_MAJOR}::${qtPlatformPlugin}
 	qt::${qtPlatformPlugin}
