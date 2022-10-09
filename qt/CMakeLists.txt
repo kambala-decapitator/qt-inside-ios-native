@@ -47,3 +47,18 @@ else()
 endif()
 
 target_link_libraries(QtApp PUBLIC Qt${QT_VERSION_MAJOR}::Widgets)
+
+if(IOS)
+	set(qtPlatformPlugin QIOSIntegrationPlugin)
+else()
+	set(qtPlatformPlugin QCocoaIntegrationPlugin)
+endif()
+set(qtPlatformPluginFile ${CMAKE_BINARY_DIR}/${qtPlatformPlugin}.cpp)
+file(WRITE ${qtPlatformPluginFile}
+	"#include <QtPlugin>\nQ_IMPORT_PLUGIN(${qtPlatformPlugin})"
+)
+target_sources(QtApp PRIVATE ${qtPlatformPluginFile})
+target_link_libraries(QtApp PUBLIC
+	Qt${QT_VERSION_MAJOR}::${qtPlatformPlugin}
+	qt::${qtPlatformPlugin}
+)
