@@ -6,7 +6,9 @@ Demonstration of embedding Qt GUI (widgets in this example) app inside native iO
 
 Embedding Qt app is pretty straightforward: simply call the Qt's "`main`" function that is a default entrypoint for standard Qt apps.
 
-But there's one issue: nothing new appears on the screen. The trick is to find the created Qt window, obtain native `UIView` handle, add it to the native `UIWindow` created by Qt and make the native window "key and visible". See acc313184fbd0641e31b6b6cb310ce691c200714. (probably you can also add the native view directly to your own window)
+But there's one issue: nothing new appears on the screen. The trick depends on Qt version:
+- 6.5 and above: find the created Qt window, obtain native `UIView` handle and add it to the main app window (the key window). See https://github.com/kambala-decapitator/qt-inside-ios-native/commit/3990100ec384368be5c1f0cb43d1f43ada819454.
+- earlier versions: find the created Qt window, obtain native `UIView` handle, add it to the native `UIWindow` created by Qt and make the native window "key and visible". See https://github.com/kambala-decapitator/qt-inside-ios-native/commit/acc313184fbd0641e31b6b6cb310ce691c200714. (probably you can also add the native view directly to your own window)
 
 To "kill" Qt app, call `qApp->quit()`.
 
