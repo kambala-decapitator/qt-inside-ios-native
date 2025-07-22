@@ -58,9 +58,9 @@ mkdir build
 cd build
 
 cmake .. -G Xcode \
-  -DCMAKE_PREFIX_PATH="$QTDIR" \
-  --toolchain ../ios/ios-cmake/ios.toolchain.cmake \
-  -DPLATFORM=OS64
+  -D CMAKE_PREFIX_PATH="$QTDIR" \
+  -D CMAKE_SYSTEM_NAME=iOS \
+  -D CMAKE_FIND_ROOT_PATH_MODE_PACKAGE=NEVER
 open qt-inside-ios-native.xcodeproj
 ```
 
